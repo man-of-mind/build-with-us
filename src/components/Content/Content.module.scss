@@ -1,0 +1,62 @@
+.content {
+    padding: 50px 0px 134px 100px;
+    color: #000000;
+    font-style: normal;
+    p {
+        font-family: 'Product Sans';
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 29px;
+        padding-right: 304px;
+        margin: 0;
+        padding-bottom: 50px;
+    }
+    span {
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 29px;
+    }
+    form {
+        display: flex;
+        flex-direction: column;
+        padding-top: 46px;
+        label {
+            font-weight: 400;
+            font-size: 18px;
+            line-height: 22px;
+            padding-bottom: 8px;
+        }
+        input {
+            margin-right: 452px;
+            padding: 20px 0 20px 16px;
+            margin-bottom: 32px;
+            border: 0.7px solid rgba(19, 32, 19, 0.3);
+            border-radius: 4px;
+        }
+        input::placeholder {
+            font-weight: 400;
+            font-size: 13px;
+            line-height: 15px;
+            display: flex;
+            align-items: center;
+            letter-spacing: 0.000909091em;
+            color: #132013;
+            mix-blend-mode: normal;
+        }
+        select {
+            margin-right: 452px;
+            padding: 20px 16px;
+            margin-bottom: 8px;
+            border: 0.7px solid rgba(19, 32, 19, 0.3);
+            border-radius: 4px;
+            background-color: #f0e9e9;
+        }
+        span {
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 19px;
+            color: rgba(0, 0, 0, 0.8);
+            padding-bottom: 32px;
+        }
+    }
+}
