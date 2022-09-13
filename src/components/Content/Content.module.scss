@@ -1,9 +1,16 @@
+@font-face {
+    font-family: 'ProductSans';
+    src: local('ProductSans'), url(./ProductSansRegular.ttf) format('truetype');
+    /* other formats include: 'woff2', 'truetype, 'opentype',
+                              'embedded-opentype', and 'svg' */
+}
+
 .content {
     padding: 50px 0px 134px 100px;
     color: #000000;
     font-style: normal;
+    font-family: 'ProductSans';
     p {
-        font-family: 'Product Sans';
         font-weight: 400;
         font-size: 24px;
         line-height: 29px;
@@ -57,6 +64,38 @@
             line-height: 19px;
             color: rgba(0, 0, 0, 0.8);
             padding-bottom: 32px;
+        }
+        .datepicker {
+            margin-right: 452px;
+            padding: 20px 16px;
+            border: 0.7px solid rgba(19, 32, 19, 0.3);
+            border-radius: 4px;
+            font-size: 13px;
+            font-weight: 400;
+        }
+        p {
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 19px;
+            color: rgba(0, 0, 0, 0.8);
+            padding-top: 10px;
+        }
+        .button {
+            margin-top: 50px;
+            height: 78px;
+            width: 575px;
+            background: #E66B3C;
+            border-radius: 48px;
+            color: #FFFFFF;
+            transition: 0.4s ease-in;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 24px;
+            line-height: 29px;
+            border: none;
+        }
+        .my-pop-overlay {
+            background: aqua;
         }
     }
 }
