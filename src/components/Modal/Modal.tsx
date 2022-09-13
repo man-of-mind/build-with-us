@@ -45,7 +45,7 @@ const ModalContent:React.FC<prop> = ({ value }) => {
             </div>)}
             {show ? (<button onClick={(e) => handleClick(e)}>Confirm meeting</button>) : null}
             
-            {!show && (<button><a href="/">Back home</a></button>)}
+            {!show && (<button><a href="/build-with-us">Back home</a></button>)}
         </div>
     );
 }
