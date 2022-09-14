@@ -5,6 +5,15 @@
                               'embedded-opentype', and 'svg' */
 }
 
+* {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+*::-webkit-scrollbar {
+    display: none;
+}
+
 .content {
     padding: 50px 0px 134px 100px;
     color: #000000;

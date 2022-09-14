@@ -118,9 +118,6 @@ const Content = () => {
                             width: 'auto', 
                             maxHeight: 'calc(100vh - 6rem)', 
                             overflowY: 'scroll', 
-                            scrollbarWidth: 'none', 
-                            msOverflowStyle: 'none',
-                            
                         }
                     } 
                     repositionOnResize={true} 
