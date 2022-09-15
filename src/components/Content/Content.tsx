@@ -7,10 +7,13 @@ import Popup from "reactjs-popup";
 import 'reactjs-popup/dist/index.css';
 import "react-datepicker/dist/react-datepicker.css";
 import ModalContent from "../Modal/Modal";
+import Option from "./Options";
+import { default as ReactSelect } from "react-select";
 
 const Content = () => {
     const [startDate, setStartDate] = useState(new Date());
     const [isOpen, setIsOpen] = useState(false);
+    const [selected, setSelected] = React.useState(null);
     const [stateEditor, setStateEditor] = useState(EditorState.createEmpty());
     const [value, setValue] = useState({
         name: "",
@@ -37,6 +40,15 @@ const Content = () => {
         e.preventDefault();
         setIsOpen(!isOpen);
     };
+
+    const timeOptions = [
+        { value: "9:00AM-10:00AM", label: "9:00AM - 10:00AM" },
+        { value: "10:00AM-11:00AM", label: "10:00AM - 11:00AM" },
+        { value: "11:00AM-12:00PM", label: "11:00AM - 12:00PM" },
+        { value: "12:00PM-1:00PM", label: "12:00PM - 1:00PM" },
+        { value: "1:00PM-2:00PM", label: "1:00PM - 2:00PM" },
+        { value: "2:00PM-3:00PM", label: "2:00PM - 3:00PM" }
+      ];
 
 
     return (
@@ -85,14 +97,18 @@ const Content = () => {
                     <DatePicker selected={startDate} onChange={(e:Date) => handleChange(e)} dateFormat="d MMMM, yyyy" inline/>
                 )}
                 <label htmlFor="time" style={{'marginTop': '32px'}}>Available time slots</label>
-                <select name="time" style={{'marginBottom': '32px'}} value={value.time} onChange={(e) => setValue({...value, time: e.target.value})}>
-                    <option value="9:00AM-10:00AM">9:00 AM - 10:00 AM</option>
-                    <option value="10:00AM-11:00AM">10:00 AM - 11:00 AM</option>
-                    <option value="11:00AM-12:00PM">11:00 AM - 12:00 PM</option>
-                    <option value="12:00PM-1:00PM">12:00 PM - 1:00 PM</option>
-                    <option value="1:00PM-2:00PM">1:00 PM - 2:00 PM</option>
-                    <option value="2:00PM-3:00PM">2:00 PM - 3:00 PM</option>
-                </select>
+                <ReactSelect
+                    options={timeOptions}
+                    isMulti
+                    closeMenuOnSelect={false}
+                    hideSelectedOptions={false}
+                    components={{
+                        Option
+                    }}
+                    className={styles['react-select']}
+                    onChange={(e:any) => setSelected(e)}
+                    value={selected}
+                />
                 <label htmlFor="desciption">Description</label>
                 <div onClick={focusEditor} style={{
                     border: '1px solid gray',
