@@ -57,7 +57,7 @@ const Content = () => {
                 You've come to the right place! Reach out to us today and let the journey begin!
             </p>
             <span>Submit a request</span>
-            <form onSubmit={(e) => e.preventDefault()}>
+            <form>
                 <label htmlFor="name">Name</label>
                 <input 
                     aria-label="Name"
