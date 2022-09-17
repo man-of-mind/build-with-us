@@ -19,8 +19,8 @@
     color: #000000;
     font-style: normal;
     font-family: 'ProductSans';
+    font-weight: 400;
     p {
-        font-weight: 400;
         font-size: 24px;
         line-height: 29px;
         padding-right: 304px;
@@ -37,7 +37,6 @@
         flex-direction: column;
         padding-top: 46px;
         label {
-            font-weight: 400;
             font-size: 18px;
             line-height: 22px;
             padding-bottom: 8px;
@@ -48,9 +47,14 @@
             margin-bottom: 32px;
             border: 0.7px solid rgba(19, 32, 19, 0.3);
             border-radius: 4px;
+            font-size: 16px;
+            line-height: 19px;
+            letter-spacing: 0.000909091em;
+            color: #132013;
+            mix-blend-mode: normal;
+            opacity: 0.5;
         }
         input::placeholder {
-            font-weight: 400;
             font-size: 13px;
             line-height: 15px;
             display: flex;
@@ -62,13 +66,18 @@
         select {
             margin-right: 452px;
             padding: 20px 16px;
-            margin-bottom: 8px;
+            margin-bottom: 32px;
             border: 0.7px solid rgba(19, 32, 19, 0.3);
             border-radius: 4px;
-            background-color: #f0e9e9;
+            background-color: #FFFFFF;
+            font-size: 16px;
+            line-height: 19px;
+            letter-spacing: 0.000909091em;
+            color: #132013;
+            mix-blend-mode: normal;
+            opacity: 0.5;
         }
         span {
-            font-weight: 400;
             font-size: 16px;
             line-height: 19px;
             color: rgba(0, 0, 0, 0.8);
@@ -80,10 +89,8 @@
             border: 0.7px solid rgba(19, 32, 19, 0.3);
             border-radius: 4px;
             font-size: 13px;
-            font-weight: 400;
         }
         p {
-            font-weight: 400;
             font-size: 16px;
             line-height: 19px;
             color: rgba(0, 0, 0, 0.8);
@@ -106,6 +113,28 @@
         .react-select {
             margin-right: 452px;
             padding-bottom: 32px;
+        }
+        h3 {
+            margin: 0;
+            margin-bottom: 32px;
+            font-weight: 400;
+            margin-top: 10px;
+            font-size: 16px;
+            line-height: 19px;
+            color: rgba(0, 0, 0, 0.8);
+        }
+        section {
+            margin-right: 452px;
+            .date-time {
+                display: flex;
+                justify-content: space-between;
+                span {
+                    font-weight: 400;
+                    font-size: 14px;
+                    line-height: 17px;
+                    color: rgba(0, 0, 0, 0.4);
+                }
+            }
         }
     }
 }

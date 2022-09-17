@@ -57,7 +57,7 @@ const Content = () => {
                 You've come to the right place! Reach out to us today and let the journey begin!
             </p>
             <span>Submit a request</span>
-            <form>
+            <form onSubmit={(e) => e.preventDefault()}>
                 <label htmlFor="name">Name</label>
                 <input 
                     aria-label="Name"
@@ -75,20 +75,10 @@ const Content = () => {
                     onChange={(e) => setValue({...value, email: e.target.value})}
                     placeholder="Enter email address"/>
                 <label htmlFor="subject">Subject</label>
-                <input 
-                    name="subject"
-                    aria-label="Subject"
-                    type="text"
-                    value={value.subject}
-                    onChange={(e) => setValue({...value, subject: e.target.value})}
-                    placeholder="Enter subject"/>
-                <label htmlFor="medium">Medium</label>
-                <select name="medium">
-                    <option value=""></option>
-                    <option value="on-site visit">On-site visit</option>
-                    <option value="virtual meeting">Virtual meeting</option>
+                <select name="subject">
+                    <option value="enquires">Enquries</option>
                 </select>
-                <span>Our address is at: 194, Herbert Macaulay Road, Yaba, Lagos.</span>
+                
                 <label htmlFor="date">Schedule date</label>
                 <div onClick={handleClick} className={styles["datepicker"]}>
                     {format(startDate.toLocaleDateString(), "d MMMM, yyyy")}
@@ -123,7 +113,21 @@ const Content = () => {
                         onChange={(e) => setStateEditor(e)}
                     />
                 </div>
-                <p>Please enter the details of your request. A member of our support staff will respond as soon as possible.</p>
+                <h3>Please enter the details of your request. A member of our support staff will respond as soon as possible.</h3>
+                <label htmlFor="medium">Medium</label>
+                <input 
+                    name="medium"
+                    aria-label="Medium"
+                    type="text"
+                    value="Online"
+                    onChange={(e) => setValue({...value, subject: e.target.value})}
+                    disabled={true}/>
+                <section>
+                    <div className={styles['date-time']}>
+                        <label htmlFor="scheduled date and time">Schedule your preferred meeting time</label>
+                        <span><i>You can chose up to 3 dates</i></span>
+                    </div>
+                </section>
                 <Popup 
                     lockScroll={true} 
                     contentStyle={
