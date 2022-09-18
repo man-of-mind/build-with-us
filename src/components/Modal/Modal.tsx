@@ -5,17 +5,17 @@ import iQubeLogo from '../Images/iqube.svg';
 import { format } from 'react-string-format';
 
 interface value {
-    date: Date,
     name: string,
     email: string,
     subject: string,
-    time: string
+    description: string
 }
 
 interface prop {
-    value: value
+    value: value,
+    date: Date
 }
-const ModalContent:React.FC<prop> = ({ value }) => {
+const ModalContent:React.FC<prop> = ({ value, date }) => {
     const [show, setShow] = React.useState(true);
     const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.preventDefault();
@@ -41,13 +41,13 @@ const ModalContent:React.FC<prop> = ({ value }) => {
                         <span className={styles['para']}>Date: </span>
                         <div className={styles['time-date']}>
                             <span>
-                                {format(value.date.toLocaleDateString(), "d MMMM, yyyy")}
+                                {format(date.toLocaleDateString(), "d MMMM, yyyy")}
                             </span>
                             <span>
                                 Time: <time>9 - 10 AM</time>
                             </span>
                             <span>
-                                {format(value.date.toLocaleDateString(), "d MMMM, yyyy")}
+                                {format(date.toLocaleDateString(), "d MMMM, yyyy")}
                             </span>
                             <span>
                                 Time: <time>9 - 10 AM</time>

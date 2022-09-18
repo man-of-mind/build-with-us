@@ -16,12 +16,34 @@ const Content = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [showPlaceHolder, setShowPlaceHolder] = React.useState(true);
     const [stateEditor, setStateEditor] = useState(EditorState.createEmpty());
+    const [scheduleData, setScheduleData] = React.useState([
+        {
+            id: 0,
+            date: new Date(),
+            time: "",
+            showPlaceHolder: true,
+            isOpen: false
+        },
+        {
+            id: 1,
+            date: new Date(),
+            time: "",
+            showPlaceHolder: true,
+            isOpen: false
+        },
+        {
+            id: 2,
+            date: new Date(),
+            time: "",
+            showPlaceHolder: true,
+            isOpen: false
+        }
+    ]);
     const [value, setValue] = useState({
         name: "",
         email: "",
-        date: startDate,
+        description: "",
         subject: "",
-        time: "9:00AM-10:00AM"
     });
     const editor = React.useRef() as MutableRefObject<Editor>;
  
@@ -42,6 +64,73 @@ const Content = () => {
         e.preventDefault();
         setIsOpen(!isOpen);
     };
+
+    const [allSchedules, setSchedules] = React.useState([0]);
+    const addNewDateTime = () => {
+        const last = allSchedules.length;
+        setSchedules((state) => [...state, last])
+    }
+
+    const updateScheduleData = (e: React.ChangeEvent<HTMLSelectElement> | React.SetStateAction<Date> | any, id: number, action: string) => {
+        switch (action) {
+            case 'time':
+                const copyData = scheduleData.map(item => {
+                    if (item.id === id) {
+                        return {...item, time: e.target.value}
+                    }
+                    return item
+                });
+            
+                setScheduleData(copyData);
+                break
+            case 'date':
+                const data = scheduleData.map(item => {
+                    if (item.id === id) {
+                        return {...item, date: e, isOpen: !item.isOpen, showPlaceHolder: false}
+                    }
+                    return item
+                })
+
+                setScheduleData(data);
+                break
+        }
+        
+        
+    }
+
+    
+    const schedules = allSchedules.map(schedule => {
+        return (
+            <div key={schedule}><div className={styles['date-time-container']}>
+                <div>
+                    <div onClick={handleClick} className={styles["datepicker"]}>
+                        <img src={calendarIcon} alt="calendar icon"></img>
+                        <>{scheduleData[schedule].showPlaceHolder ? (<small>Pick a date</small>) : (<small>{format(scheduleData[schedule].date.toLocaleDateString(), "d MMMM, yyyy")}</small>)}</>
+                        <img src={arrowDown} alt="arrow down icon"></img>
+                    </div>
+                </div>
+                        
+                <div className={styles['timepicker']}>
+                    <img src={clockIcon} alt="clock icon"></img>
+                    <select name="time" value={scheduleData[schedule].time} onChange={(e) => updateScheduleData(e, schedule, 'time')}>
+                        <option value="" disabled selected>Pick a time</option>
+                        <option value="9 - 10 AM">9 - 10 am</option>
+                        <option value="10 - 11 AM">10 - 11 am</option>
+                        <option value="11 - 12 PM">11 - 12 pm</option>
+                        <option value="12 - 1 PM">12 - 1 pm</option>
+                        <option value="1 - 2 PM">1 - 2 pm</option>
+                        <option value="2 - 3 PM">2 - 3 pm</option>
+                    </select>
+                </div>
+
+                <button onClick={addNewDateTime}>Add new</button>
+                        
+            </div>
+            {scheduleData[schedule].isOpen && (
+                    <DatePicker selected={scheduleData[schedule].date} onChange={(e:Date) => updateScheduleData(e, schedule, 'date')} dateFormat="d MMMM, yyyy" inline />   
+            )}</div>
+        );
+    });
 
 
     return (
@@ -98,34 +187,7 @@ const Content = () => {
                         <label htmlFor="scheduled date and time">Schedule your preferred meeting time</label>
                         <i>You can chose up to 3 dates</i>
                     </div>
-                    <div className={styles['date-time-container']}>
-                        <div>
-                            <div onClick={handleClick} className={styles["datepicker"]}>
-                                <img src={calendarIcon} alt="calendar icon"></img>
-                                <>{showPlaceHolder ? (<small>Pick a date</small>) : (<small>{format(startDate.toLocaleDateString(), "d MMMM, yyyy")}</small>)}</>
-                                <img src={arrowDown} alt="arrow down icon"></img>
-                            </div>
-                        </div>
-                        
-                        <div className={styles['timepicker']}>
-                            <img src={clockIcon} alt="clock icon"></img>
-                            <select name="time">
-                                <option value="" disabled selected>Pick a time</option>
-                                <option value="9 - 10 AM">9 - 10 am</option>
-                                <option value="10 - 11 AM">10 - 11 am</option>
-                                <option value="11 - 12 PM">11 - 12 pm</option>
-                                <option value="12 - 1 PM">12 - 1 pm</option>
-                                <option value="1 - 2 PM">1 - 2 pm</option>
-                                <option value="2 - 3 PM">2 - 3 pm</option>
-                            </select>
-                        </div>
-
-                        <button>Add new</button>
-                        
-                    </div>
-                    {isOpen && (
-                            <DatePicker selected={startDate} onChange={(e:Date) => handleChange(e)} dateFormat="d MMMM, yyyy" inline />   
-                    )}
+                    {schedules}
                 </section>
                 <Popup 
                     lockScroll={true} 
@@ -150,7 +212,7 @@ const Content = () => {
                     trigger={<button className={styles["button"]} onClick={(e) => e.preventDefault()}>Submit</button>}
                     className={styles['my-popup']} 
                 >
-                    <ModalContent value={value}/>
+                    <ModalContent value={value} date={new Date()}/>
                     
                 </Popup>
             </form>
