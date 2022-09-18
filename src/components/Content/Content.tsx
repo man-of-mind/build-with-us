@@ -7,13 +7,14 @@ import Popup from "reactjs-popup";
 import 'reactjs-popup/dist/index.css';
 import "react-datepicker/dist/react-datepicker.css";
 import ModalContent from "../Modal/Modal";
-import Option from "./Options";
-import { default as ReactSelect } from "react-select";
+import calendarIcon from '../Images/calendar.svg';
+import arrowDown from "../Images/arrow.svg";
+import clockIcon from "../Images/clock.svg";
 
 const Content = () => {
     const [startDate, setStartDate] = useState(new Date());
     const [isOpen, setIsOpen] = useState(false);
-    const [selected, setSelected] = React.useState(null);
+    const [showPlaceHolder, setShowPlaceHolder] = React.useState(true);
     const [stateEditor, setStateEditor] = useState(EditorState.createEmpty());
     const [value, setValue] = useState({
         name: "",
@@ -35,20 +36,12 @@ const Content = () => {
     const handleChange = (e: React.SetStateAction<Date>) => {
         setIsOpen(!isOpen);
         setStartDate(e);
+        setShowPlaceHolder(false)
     };
     const handleClick = (e: { preventDefault: () => void; }) => {
         e.preventDefault();
         setIsOpen(!isOpen);
     };
-
-    const timeOptions = [
-        { value: "9:00AM-10:00AM", label: "9:00AM - 10:00AM" },
-        { value: "10:00AM-11:00AM", label: "10:00AM - 11:00AM" },
-        { value: "11:00AM-12:00PM", label: "11:00AM - 12:00PM" },
-        { value: "12:00PM-1:00PM", label: "12:00PM - 1:00PM" },
-        { value: "1:00PM-2:00PM", label: "1:00PM - 2:00PM" },
-        { value: "2:00PM-3:00PM", label: "2:00PM - 3:00PM" }
-      ];
 
 
     return (
@@ -78,27 +71,6 @@ const Content = () => {
                 <select name="subject">
                     <option value="enquires">Enquries</option>
                 </select>
-                
-                <label htmlFor="date">Schedule date</label>
-                <div onClick={handleClick} className={styles["datepicker"]}>
-                    {format(startDate.toLocaleDateString(), "d MMMM, yyyy")}
-                </div>
-                {isOpen && (
-                    <DatePicker selected={startDate} onChange={(e:Date) => handleChange(e)} dateFormat="d MMMM, yyyy" inline/>
-                )}
-                <label htmlFor="time" style={{'marginTop': '32px'}}>Available time slots</label>
-                <ReactSelect
-                    options={timeOptions}
-                    isMulti
-                    closeMenuOnSelect={false}
-                    hideSelectedOptions={false}
-                    components={{
-                        Option
-                    }}
-                    className={styles['react-select']}
-                    onChange={(e:any) => setSelected(e)}
-                    value={selected}
-                />
                 <label htmlFor="desciption">Description</label>
                 <div onClick={focusEditor} style={{
                     border: '1px solid gray',
@@ -120,13 +92,40 @@ const Content = () => {
                     aria-label="Medium"
                     type="text"
                     value="Online"
-                    onChange={(e) => setValue({...value, subject: e.target.value})}
                     disabled={true}/>
                 <section>
                     <div className={styles['date-time']}>
                         <label htmlFor="scheduled date and time">Schedule your preferred meeting time</label>
-                        <span><i>You can chose up to 3 dates</i></span>
+                        <i>You can chose up to 3 dates</i>
                     </div>
+                    <div className={styles['date-time-container']}>
+                        <div>
+                            <div onClick={handleClick} className={styles["datepicker"]}>
+                                <img src={calendarIcon} alt="calendar icon"></img>
+                                <>{showPlaceHolder ? (<small>Pick a date</small>) : (<small>{format(startDate.toLocaleDateString(), "d MMMM, yyyy")}</small>)}</>
+                                <img src={arrowDown} alt="arrow down icon"></img>
+                            </div>
+                        </div>
+                        
+                        <div className={styles['timepicker']}>
+                            <img src={clockIcon} alt="clock icon"></img>
+                            <select name="time">
+                                <option value="" disabled selected>Pick a time</option>
+                                <option value="9 - 10 AM">9 - 10 am</option>
+                                <option value="10 - 11 AM">10 - 11 am</option>
+                                <option value="11 - 12 PM">11 - 12 pm</option>
+                                <option value="12 - 1 PM">12 - 1 pm</option>
+                                <option value="1 - 2 PM">1 - 2 pm</option>
+                                <option value="2 - 3 PM">2 - 3 pm</option>
+                            </select>
+                        </div>
+
+                        <button>Add new</button>
+                        
+                    </div>
+                    {isOpen && (
+                            <DatePicker selected={startDate} onChange={(e:Date) => handleChange(e)} dateFormat="d MMMM, yyyy" inline />   
+                    )}
                 </section>
                 <Popup 
                     lockScroll={true} 
