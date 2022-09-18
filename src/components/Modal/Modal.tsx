@@ -1,6 +1,7 @@
 import React from "react";
 import styles from './Modal.module.scss';
-import envelop from '../Images/Group.svg';
+import openedMessage from '../Images/opened-env.svg';
+import iQubeLogo from '../Images/iqube.svg';
 import { format } from 'react-string-format';
 
 interface value {
@@ -26,23 +27,65 @@ const ModalContent:React.FC<prop> = ({ value }) => {
             <div className={styles['header']}>
                 Confirm booking.
             </div>
-            <div className={styles['booking-icon-status']}>
-                <img src={envelop} alt="opened envelop" style={{width: '100%', height: '100%'}}/>
-            </div>
-            {show ? (<section>
-                <p>Meeting summary</p>
-                <div className={styles['detail']}><span className={styles['para']}>Subject: </span><span>{value.subject}</span></div>
-                <hr/>
-                <div className={styles['detail']} style={{paddingTop: '24px'}}><span className={styles['para']}>Date: </span><span>{format(value.date.toLocaleDateString(), "d MMMM, yyyy")}</span></div>
-                <hr/>
-                <div className={styles['detail']} style={{paddingTop: '24px'}}><span className={styles['para']}>Time: </span><span>{value.time}</span></div>
-                <hr/>
-                <div className={styles['detail']} style={{paddingTop: '24px'}}><span className={styles['para']} style={{width: '130px'}}>Medium: </span><span>Onsite meeting visit us at: 194, Herbert Macaulay Road, Yaba, Lagos.</span></div>
-                
-            </section>) : (<div className={styles['confirm-booking']}>
-                <p className={styles['head']}>Booking confirmed</p>
-                <p className={styles['body']}>Thank you for reaching out to Iqube labs, A member of our support staff will respond within 24 hours.</p>
-            </div>)}
+
+            
+            {show ? (
+            <>
+                <div className={styles['booking-icon-status']}>
+                    <img src={iQubeLogo} alt="iQube logo" />
+                    <h1>Meeting summary with iQubes lab</h1>
+                </div>
+                <section>
+                    <div className={styles['detail']}><span className={styles['para']}>Subject: </span><span>Build an app</span></div>
+                    <div className={styles['detail']}>
+                        <span className={styles['para']}>Date: </span>
+                        <div className={styles['time-date']}>
+                            <span>
+                                {format(value.date.toLocaleDateString(), "d MMMM, yyyy")}
+                            </span>
+                            <span>
+                                Time: <time>9 - 10 AM</time>
+                            </span>
+                            <span>
+                                {format(value.date.toLocaleDateString(), "d MMMM, yyyy")}
+                            </span>
+                            <span>
+                                Time: <time>9 - 10 AM</time>
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div className={styles['description']}>
+                        <h3>Description</h3>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                            Morbi eget eleifend odio sollicitudin. In non est, urna at. 
+                            Ac suspendisse id nam amet praesent ultrices sollicitudin. 
+                            Morbi tellus, mauris sollicitudin dignissim enim sem pharetra urna. 
+                            Eu id in orci, at. Adipiscing integer tincidunt nulla urna nisl morbi 
+                            sed leo. Convallis porttitor pulvinar tellus in elementum euismod. 
+                            Dapibus tellus aliquam gravida lobortis bibendum sapien felis, eu. 
+                            Auctor dictum fermentum cras condimentum gravida et, commodo. 
+                            Diam diam gravida semper cras nunc urna sit. Suspendisse elementum 
+                            aliquam vivamus praesent netus donec.
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                            Morbi eget eleifend odio sollicitudin. In non est, urna at. 
+                            Ac suspendisse id nam amet praesent ultrices sollicitudin. 
+                            Morbi tellus, mauris sollicitudin dignissim enim sem pharetra urna. 
+                            Eu id in orci, at. Adipiscing integer tincidunt nulla urna nisl morbi sed leo. 
+                            Convallis porttitor pulvinar tellus in elementum euismod. Dapibus tellus aliquam 
+                            gravida vivamus praesent netus donec.
+                        </p>
+                    </div>
+                </section></>) : 
+                (
+                <>
+                    <div className={styles['booking-confirmed']}><img src={openedMessage} alt="booking sent"/></div>
+                    <div className={styles['confirm-booking']}>
+                        <p>Our member of our support staff will respond via email within 24 hours with further details of the meeting. Talk to you soon. </p>
+                    </div>
+                </>)
+            }
             {show ? (<button onClick={(e) => handleClick(e)}>Confirm meeting</button>) : null}
             
             {!show && (<button><a href="/build-with-us">Back home</a></button>)}

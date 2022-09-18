@@ -146,6 +146,7 @@ const Content = () => {
                         }
                     } 
                     modal 
+                    closeOnDocumentClick={false}
                     trigger={<button className={styles["button"]} onClick={(e) => e.preventDefault()}>Submit</button>}
                     className={styles['my-popup']} 
                 >
