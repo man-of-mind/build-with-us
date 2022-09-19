@@ -1,8 +1,7 @@
-import React, { MutableRefObject, useState } from "react";
+import React from "react";
 import styles from './Content.module.scss';
 import DatePicker from "react-datepicker";
 import { format } from 'react-string-format';
-import {Editor, EditorState} from 'draft-js';
 import Popup from "reactjs-popup";
 import 'reactjs-popup/dist/index.css';
 import "react-datepicker/dist/react-datepicker.css";
@@ -12,63 +11,71 @@ import arrowDown from "../Images/arrow.svg";
 import clockIcon from "../Images/clock.svg";
 
 const Content = () => {
-    const [startDate, setStartDate] = useState(new Date());
-    const [isOpen, setIsOpen] = useState(false);
-    const [showPlaceHolder, setShowPlaceHolder] = React.useState(true);
-    const [stateEditor, setStateEditor] = useState(EditorState.createEmpty());
     const [scheduleData, setScheduleData] = React.useState([
         {
             id: 0,
             date: new Date(),
             time: "",
             showPlaceHolder: true,
-            isOpen: false
+            isOpen: false,
+            disabled: false,
+            rendered: true
         },
         {
             id: 1,
             date: new Date(),
             time: "",
             showPlaceHolder: true,
-            isOpen: false
+            isOpen: false,
+            disabled: false,
+            rendered: false
         },
         {
             id: 2,
             date: new Date(),
             time: "",
             showPlaceHolder: true,
-            isOpen: false
+            isOpen: false,
+            disabled: true,
+            rendered: false
         }
     ]);
-    const [value, setValue] = useState({
+
+    const [value, setValue] = React.useState({
         name: "",
         email: "",
-        description: "",
-        subject: "",
+        subject: "Enquiries",
+        description: ""
     });
-    const editor = React.useRef() as MutableRefObject<Editor>;
- 
-    function focusEditor() {
-        editor.current.focus();    
-    }
-   
-    React.useEffect(() => {
-      focusEditor()
-    }, []);
-    
-    const handleChange = (e: React.SetStateAction<Date>) => {
-        setIsOpen(!isOpen);
-        setStartDate(e);
-        setShowPlaceHolder(false)
-    };
-    const handleClick = (e: { preventDefault: () => void; }) => {
+  
+    const handleClick = (e: { preventDefault: () => void; }, id: number) => {
         e.preventDefault();
-        setIsOpen(!isOpen);
+        const updateData = scheduleData.map(item => {
+            if (item.id === id) {
+                return {...item, isOpen: !item.isOpen}
+            }
+            return item
+        })
+        setScheduleData(updateData);
     };
 
     const [allSchedules, setSchedules] = React.useState([0]);
-    const addNewDateTime = () => {
-        const last = allSchedules.length;
-        setSchedules((state) => [...state, last])
+
+    const addNewDateTime = (id: number) => {
+        const data = scheduleData.map(item => {
+            if (item.id === id) {
+                return {...item, disabled: !item.disabled}
+            }
+            return item
+        });
+        setSchedules((state) => [...state, allSchedules.length]);
+        const newData = data.map(item => {
+            if (item.id === (id + 1)) {
+                return {...item, rendered: true}
+            }
+            return item;
+        });
+        setScheduleData(newData);
     }
 
     const updateScheduleData = (e: React.ChangeEvent<HTMLSelectElement> | React.SetStateAction<Date> | any, id: number, action: string) => {
@@ -93,6 +100,8 @@ const Content = () => {
 
                 setScheduleData(data);
                 break
+            default:
+                break
         }
         
         
@@ -103,7 +112,7 @@ const Content = () => {
         return (
             <div key={schedule}><div className={styles['date-time-container']}>
                 <div>
-                    <div onClick={handleClick} className={styles["datepicker"]}>
+                    <div onClick={(e) => handleClick(e, schedule)} className={styles["datepicker"]}>
                         <img src={calendarIcon} alt="calendar icon"></img>
                         <>{scheduleData[schedule].showPlaceHolder ? (<small>Pick a date</small>) : (<small>{format(scheduleData[schedule].date.toLocaleDateString(), "d MMMM, yyyy")}</small>)}</>
                         <img src={arrowDown} alt="arrow down icon"></img>
@@ -123,7 +132,7 @@ const Content = () => {
                     </select>
                 </div>
 
-                <button onClick={addNewDateTime}>Add new</button>
+                <button onClick={() => addNewDateTime(schedule)} disabled={scheduleData[schedule].disabled}>Add new</button>
                         
             </div>
             {scheduleData[schedule].isOpen && (
@@ -132,6 +141,33 @@ const Content = () => {
         );
     });
 
+    const checkRequiredFields = () => {
+        let timeDateState = true;
+        let detailState = true;
+
+        for (let i = 0; i < scheduleData.length; i++) {
+            if ((scheduleData[i].time === "" || scheduleData[i].showPlaceHolder === true) && scheduleData[i].rendered === true) {
+                timeDateState = true;
+                break
+            }
+            timeDateState = false
+        }
+        
+        const keys = Object.values(value);
+        
+        for (let i = 0; i < keys.length; i++) {
+            if (keys[i] === "") {
+                detailState = true;
+                break
+            }
+            detailState = false
+        }
+
+        if (detailState === true || timeDateState === true) {
+            return true
+        }
+        else return false
+    }
 
     return (
         <div className={styles["content"]}>
@@ -152,28 +188,16 @@ const Content = () => {
                 <input 
                     name="email"
                     aria-label="Email"
-                    type="email"
+                    type="text"
                     value={value.email}
                     onChange={(e) => setValue({...value, email: e.target.value})}
                     placeholder="Enter email address"/>
                 <label htmlFor="subject">Subject</label>
-                <select name="subject">
+                <select name="subject" value={value.subject} onChange={(e) => setValue({...value, subject: e.target.value})}>
                     <option value="enquires">Enquries</option>
                 </select>
-                <label htmlFor="desciption">Description</label>
-                <div onClick={focusEditor} style={{
-                    border: '1px solid gray',
-                    minHeight: '350px',
-                    marginRight: '452px',
-                    borderRadius: '4px',
-                    padding: '4px'
-                }}>
-                    <Editor
-                        ref={editor}
-                        editorState={stateEditor}
-                        onChange={(e) => setStateEditor(e)}
-                    />
-                </div>
+                <label htmlFor="description">Description</label>
+                <textarea name="description" value={value.description} onChange={e => setValue({...value, description: e.target.value})} />
                 <h3>Please enter the details of your request. A member of our support staff will respond as soon as possible.</h3>
                 <label htmlFor="medium">Medium</label>
                 <input 
@@ -208,11 +232,11 @@ const Content = () => {
                         }
                     } 
                     modal 
-                    closeOnDocumentClick={false}
-                    trigger={<button className={styles["button"]} onClick={(e) => e.preventDefault()}>Submit</button>}
+                    closeOnDocumentClick
+                    trigger={<button className={styles["button"]} disabled={checkRequiredFields()} onClick={(e) => e.preventDefault()}>Submit</button>}
                     className={styles['my-popup']} 
                 >
-                    <ModalContent value={value} date={new Date()}/>
+                    <ModalContent value={value} schedule={scheduleData} />
                     
                 </Popup>
             </form>

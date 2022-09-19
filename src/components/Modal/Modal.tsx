@@ -10,17 +10,37 @@ interface value {
     subject: string,
     description: string
 }
-
-interface prop {
-    value: value,
+interface schedule {
+    time: string,
     date: Date
 }
-const ModalContent:React.FC<prop> = ({ value, date }) => {
+interface prop {
+    value: value,
+    schedule: schedule[]
+}
+const ModalContent:React.FC<prop> = ({ value, schedule }) => {
     const [show, setShow] = React.useState(true);
     const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.preventDefault();
         setShow(!show);
     } 
+
+    const filterSchedule = schedule.filter(data => {
+        return data.time !== ""
+    });
+
+    const dateTime = filterSchedule.map(item => {
+        return (
+            <>
+                <span>
+                    {format(item.date.toLocaleDateString(), "d MMMM, yyyy")}
+                </span>
+                <span>
+                    Time: <time>{item.time}</time>
+                </span>
+            </>
+        );
+    })
     
     return (
         <div className={styles['modal']}>
@@ -36,45 +56,18 @@ const ModalContent:React.FC<prop> = ({ value, date }) => {
                     <h1>Meeting summary with iQubes lab</h1>
                 </div>
                 <section>
-                    <div className={styles['detail']}><span className={styles['para']}>Subject: </span><span>Build an app</span></div>
+                    <div className={styles['detail']}><span className={styles['para']}>Subject: </span><span>{value.subject}</span></div>
                     <div className={styles['detail']}>
                         <span className={styles['para']}>Date: </span>
                         <div className={styles['time-date']}>
-                            <span>
-                                {format(date.toLocaleDateString(), "d MMMM, yyyy")}
-                            </span>
-                            <span>
-                                Time: <time>9 - 10 AM</time>
-                            </span>
-                            <span>
-                                {format(date.toLocaleDateString(), "d MMMM, yyyy")}
-                            </span>
-                            <span>
-                                Time: <time>9 - 10 AM</time>
-                            </span>
+                            {dateTime}
                         </div>
                     </div>
                     
                     <div className={styles['description']}>
                         <h3>Description</h3>
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                            Morbi eget eleifend odio sollicitudin. In non est, urna at. 
-                            Ac suspendisse id nam amet praesent ultrices sollicitudin. 
-                            Morbi tellus, mauris sollicitudin dignissim enim sem pharetra urna. 
-                            Eu id in orci, at. Adipiscing integer tincidunt nulla urna nisl morbi 
-                            sed leo. Convallis porttitor pulvinar tellus in elementum euismod. 
-                            Dapibus tellus aliquam gravida lobortis bibendum sapien felis, eu. 
-                            Auctor dictum fermentum cras condimentum gravida et, commodo. 
-                            Diam diam gravida semper cras nunc urna sit. Suspendisse elementum 
-                            aliquam vivamus praesent netus donec.
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                            Morbi eget eleifend odio sollicitudin. In non est, urna at. 
-                            Ac suspendisse id nam amet praesent ultrices sollicitudin. 
-                            Morbi tellus, mauris sollicitudin dignissim enim sem pharetra urna. 
-                            Eu id in orci, at. Adipiscing integer tincidunt nulla urna nisl morbi sed leo. 
-                            Convallis porttitor pulvinar tellus in elementum euismod. Dapibus tellus aliquam 
-                            gravida vivamus praesent netus donec.
+                            {value.description}
                         </p>
                     </div>
                 </section></>) : 
