@@ -1,17 +1,21 @@
 {
   "files": {
-    "main.css": "/build-with-us/static/css/main.7b7a271c.css",
-    "main.js": "/build-with-us/static/js/main.d174d4b4.js",
+    "main.css": "/build-with-us/static/css/main.14e17893.css",
+    "main.js": "/build-with-us/static/js/main.efc1a14c.js",
     "static/media/header.svg": "/build-with-us/static/media/header.175c7f7b4d639bc97801.svg",
+    "static/media/iqube.svg": "/build-with-us/static/media/iqube.d41c4ec174671d75d084ac4c54229a3b.svg",
     "static/media/ProductSansBold.ttf": "/build-with-us/static/media/ProductSansBold.53df38d5491afbeb42a5.ttf",
     "static/media/ProductSansRegular.ttf": "/build-with-us/static/media/ProductSansRegular.d165384076551a756b3c.ttf",
-    "static/media/Group.svg": "/build-with-us/static/media/Group.483a7b930106c16e741466dd95ff75ed.svg",
+    "static/media/opened-env.svg": "/build-with-us/static/media/opened-env.e3efb34caf478d5ccf28e8c0eb406394.svg",
+    "static/media/clock.svg": "/build-with-us/static/media/clock.946ffd05000a9659ba0ff8442321ce20.svg",
     "index.html": "/build-with-us/index.html",
-    "main.7b7a271c.css.map": "/build-with-us/static/css/main.7b7a271c.css.map",
-    "main.d174d4b4.js.map": "/build-with-us/static/js/main.d174d4b4.js.map"
+    "static/media/calendar.svg": "/build-with-us/static/media/calendar.4b144b8f70812f7f09a90d57af289c8f.svg",
+    "static/media/arrow.svg": "/build-with-us/static/media/arrow.afccb35260fe4db60ff4911db0551b1b.svg",
+    "main.14e17893.css.map": "/build-with-us/static/css/main.14e17893.css.map",
+    "main.efc1a14c.js.map": "/build-with-us/static/js/main.efc1a14c.js.map"
   },
   "entrypoints": [
-    "static/css/main.7b7a271c.css",
-    "static/js/main.d174d4b4.js"
+    "static/css/main.14e17893.css",
+    "static/js/main.efc1a14c.js"
   ]
 }
