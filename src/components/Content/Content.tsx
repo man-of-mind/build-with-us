@@ -132,7 +132,8 @@ const Content = () => {
                     </select>
                 </div>
 
-                <button onClick={() => addNewDateTime(schedule)} disabled={scheduleData[schedule].disabled}>Add new</button>
+                <button className={styles['remove-button']}><i>Remove</i></button>
+                <button className={styles['add-button']} onClick={() => addNewDateTime(schedule)} disabled={scheduleData[schedule].disabled}>Add new</button>
                         
             </div>
             {scheduleData[schedule].isOpen && (

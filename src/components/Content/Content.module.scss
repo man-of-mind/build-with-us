@@ -144,7 +144,7 @@
                 border: 1px solid rgba(19, 32, 19, 0.1);
                 border-radius: 4px;
                 display: flex;
-                padding: 16px 23px 16px 16px;
+                padding: 16px 0px 16px 16px;
                 align-items: center;
                 margin-bottom: 8px;
                 .datepicker {
@@ -189,9 +189,10 @@
                         outline: none;
                     }
                 }
-                button {
+                .add-button {
                     justify-self: end;
                     margin-left: auto;
+                    margin-right: 30px;
                     background: #113333;
                     border-radius: 4px;
                     padding: 10px;
@@ -202,8 +203,22 @@
                     border: none;
                     cursor: pointer;
                 }
-                button:disabled {
+                .add-button:disabled {
                     display: none;
+                }
+                .remove-button {
+                    justify-self: end;
+                    margin-left: auto;
+                    border: none;
+                    outline: none;
+                    background: none;
+                    padding: 0;
+                    font-weight: 400;
+                    font-size: 14px;
+                    line-height: 17px;
+                    color: #EB5757;
+                    margin-right: 16px;
+                    cursor: pointer;
                 }
             }
         }
