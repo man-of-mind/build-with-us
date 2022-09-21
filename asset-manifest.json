@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/build-with-us/static/css/main.14e17893.css",
-    "main.js": "/build-with-us/static/js/main.efc1a14c.js",
+    "main.css": "/build-with-us/static/css/main.6c76704e.css",
+    "main.js": "/build-with-us/static/js/main.2c5d862c.js",
     "static/media/header.svg": "/build-with-us/static/media/header.175c7f7b4d639bc97801.svg",
     "static/media/iqube.svg": "/build-with-us/static/media/iqube.d41c4ec174671d75d084ac4c54229a3b.svg",
     "static/media/ProductSansBold.ttf": "/build-with-us/static/media/ProductSansBold.53df38d5491afbeb42a5.ttf",
@@ -11,11 +11,11 @@
     "index.html": "/build-with-us/index.html",
     "static/media/calendar.svg": "/build-with-us/static/media/calendar.4b144b8f70812f7f09a90d57af289c8f.svg",
     "static/media/arrow.svg": "/build-with-us/static/media/arrow.afccb35260fe4db60ff4911db0551b1b.svg",
-    "main.14e17893.css.map": "/build-with-us/static/css/main.14e17893.css.map",
-    "main.efc1a14c.js.map": "/build-with-us/static/js/main.efc1a14c.js.map"
+    "main.6c76704e.css.map": "/build-with-us/static/css/main.6c76704e.css.map",
+    "main.2c5d862c.js.map": "/build-with-us/static/js/main.2c5d862c.js.map"
   },
   "entrypoints": [
-    "static/css/main.14e17893.css",
-    "static/js/main.efc1a14c.js"
+    "static/css/main.6c76704e.css",
+    "static/js/main.2c5d862c.js"
   ]
 }
