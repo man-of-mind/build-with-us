@@ -27,10 +27,12 @@ const Content = () => {
     const [value, setValue] = React.useState({
         name: "",
         email: "",
-        subject: "Enquiries",
+        subject: "",
         description: ""
     });
 
+    const [open, setOpen] = React.useState(false);  
+    const closeModal = () => setOpen(false);
   
     const handleClick = (e: { preventDefault: () => void; }, id: number) => {
         e.preventDefault();
@@ -142,7 +144,12 @@ const Content = () => {
                         
             </div>
             {data.isOpen && (
-                    <DatePicker selected={data.date} onChange={(e:Date) => updateScheduleData(e, data.id, 'date')} dateFormat="d MMMM, yyyy" inline />   
+                    <DatePicker 
+                        selected={data.date} 
+                        onChange={(e:Date) => updateScheduleData(e, data.id, 'date')} 
+                        dateFormat="d MMMM, yyyy" 
+                        inline
+                        minDate={new Date()} />   
             )}</div>
         );
     });
@@ -199,12 +206,19 @@ const Content = () => {
                     onChange={(e) => setValue({...value, email: e.target.value})}
                     placeholder="Enter email address"/>
                 <label htmlFor="subject">Subject</label>
-                <select name="subject" value={value.subject} onChange={(e) => setValue({...value, subject: e.target.value})}>
-                    <option value="enquires">Enquries</option>
-                </select>
+                <input 
+                    name="subject"
+                    aria-label="Subject"
+                    placeholder="Enter the subject"
+                    value={value.subject}
+                    onChange={(e) => setValue({...value, subject: e.target.value})} />
                 <label htmlFor="description">Description</label>
-                <textarea name="description" value={value.description} onChange={e => setValue({...value, description: e.target.value})} />
-                <h3>Please enter the details of your request. A member of our support staff will respond as soon as possible.</h3>
+                <textarea 
+                    name="description" 
+                    value={value.description} 
+                    onChange={e => setValue({...value, description: e.target.value})} 
+                    placeholder="Please enter the details of your request. A member of our support staff will respond as soon as possible"
+                />
                 <label htmlFor="medium">Medium</label>
                 <input 
                     name="medium"
@@ -215,10 +229,11 @@ const Content = () => {
                 <section>
                     <div className={styles['date-time']}>
                         <label htmlFor="scheduled date and time">Schedule your preferred meeting time</label>
-                        <i>You can chose up to 3 dates</i>
+                        <i>You can choose up to 3 dates</i>
                     </div>
                     {schedules}
                 </section>
+                <button className={styles["button"]} disabled={checkRequiredFields()} onClick={() => setOpen(o => !o)}>Submit</button>
                 <Popup 
                     lockScroll={true} 
                     contentStyle={
@@ -239,8 +254,8 @@ const Content = () => {
                     } 
                     modal 
                     closeOnDocumentClick
-                    trigger={<button className={styles["button"]} disabled={checkRequiredFields()} onClick={(e) => e.preventDefault()}>Submit</button>}
-                    className={styles['my-popup']} 
+                    open={open}
+                    onClose={closeModal}
                 >
                     <ModalContent value={value} schedule={scheduleData} />
                     

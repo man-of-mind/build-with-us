@@ -36,7 +36,7 @@ const ModalContent:React.FC<prop> = ({ value, schedule }) => {
                     {format(item.date.toLocaleDateString(), "d MMMM, yyyy")}
                 </span>
                 <span>
-                    Time: <time>{item.time}</time>
+                    <b>Time</b>: <time>{item.time}</time>
                 </span>
             </>
         );
@@ -75,7 +75,7 @@ const ModalContent:React.FC<prop> = ({ value, schedule }) => {
                 <>
                     <div className={styles['booking-confirmed']}><img src={openedMessage} alt="booking sent"/></div>
                     <div className={styles['confirm-booking']}>
-                        <p>Our member of our support staff will respond via email within 24 hours with further details of the meeting. Talk to you soon. </p>
+                        <p>A member of our support staff will respond via email within 24 hours with further details of the meeting. Talk to you soon. </p>
                     </div>
                 </>)
             }

@@ -5,14 +5,15 @@
                               'embedded-opentype', and 'svg' */
 }
 
-* {
+
+/* * {
     scrollbar-width: none;
     -ms-overflow-style: none;
 }
 
 *::-webkit-scrollbar {
     display: none;
-}
+}  */
 
 .content {
     padding: 50px 0px 134px 100px;
@@ -48,6 +49,7 @@
             padding: 4px;
             font-size: 16px;
             line-height: 19px;
+            margin-bottom: 32px;
         }
         input {
             margin-right: 452px;
@@ -60,7 +62,6 @@
             letter-spacing: 0.000909091em;
             color: #132013;
             mix-blend-mode: normal;
-            opacity: 0.5;
         }
         input::placeholder {
             font-size: 13px;
@@ -115,15 +116,6 @@
         .button:disabled {
             opacity: 0.5;
             cursor: not-allowed;
-        }
-        h3 {
-            margin: 0;
-            margin-bottom: 32px;
-            font-weight: 400;
-            margin-top: 10px;
-            font-size: 16px;
-            line-height: 19px;
-            color: rgba(0, 0, 0, 0.8);
         }
         section {
             margin-right: 452px;
