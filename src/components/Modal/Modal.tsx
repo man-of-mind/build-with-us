@@ -3,6 +3,8 @@ import styles from './Modal.module.scss';
 import openedMessage from '../Images/opened-env.svg';
 import iQubeLogo from '../Images/iqube.svg';
 import { format } from 'react-string-format';
+import axios from 'axios';
+
 
 interface value {
     name: string,
@@ -19,10 +21,45 @@ interface prop {
     schedule: schedule[]
 }
 const ModalContent:React.FC<prop> = ({ value, schedule }) => {
+    let userData: { time: string; date: Date; }[] = [];
+    schedule.map(item => {
+        userData.push({
+            time: item.time,
+            date: item.date
+        });
+        return item
+    });
+    
+    const [buttonStyle, setButtonStyle] = React.useState({});
+    const [text, setText] = React.useState("Confirm meeting");
+
     const [show, setShow] = React.useState(true);
     const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.preventDefault();
-        setShow(!show);
+        const style = {
+            opacity: '0.5',
+            cursor: "not-allowed",
+        };
+        setButtonStyle(style);
+        setText("loading...")
+        axios.post("https://bwuiqube.herokuapp.com/api/v1/users", {
+            "name": value.name,
+            "email": value.email,
+            "subject": value.subject,
+            "medium": "online",
+            "scheduledDateAndTime": userData,
+            "description": value.description
+        }).then((res) => {
+            console.log(res.status);
+            if (res.status === 201) {
+                setShow(!show);
+            }
+        }).catch((err) => {
+            setButtonStyle({});
+            setText("Confirm meeting")
+            alert("Oops, something went wrong...")
+        });
+        
     } 
 
     const filterSchedule = schedule.filter(data => {
@@ -79,7 +116,7 @@ const ModalContent:React.FC<prop> = ({ value, schedule }) => {
                     </div>
                 </>)
             }
-            {show ? (<button onClick={(e) => handleClick(e)}>Confirm meeting</button>) : null}
+            {show ? (<button onClick={(e) => handleClick(e)} style={buttonStyle}>{text}</button>) : null}
             
             {!show && (<button><a href="/build-with-us">Back home</a></button>)}
         </div>
