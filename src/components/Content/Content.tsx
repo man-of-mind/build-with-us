@@ -19,25 +19,8 @@ const Content = () => {
             showPlaceHolder: true,
             isOpen: false,
             disabled: false,
-            rendered: true
-        },
-        {
-            id: 1,
-            date: new Date(),
-            time: "",
-            showPlaceHolder: true,
-            isOpen: false,
-            disabled: false,
-            rendered: false
-        },
-        {
-            id: 2,
-            date: new Date(),
-            time: "",
-            showPlaceHolder: true,
-            isOpen: false,
-            disabled: true,
-            rendered: false
+            rendered: true,
+            showRemove: false
         }
     ]);
 
@@ -47,6 +30,7 @@ const Content = () => {
         subject: "Enquiries",
         description: ""
     });
+
   
     const handleClick = (e: { preventDefault: () => void; }, id: number) => {
         e.preventDefault();
@@ -59,23 +43,42 @@ const Content = () => {
         setScheduleData(updateData);
     };
 
-    const [allSchedules, setSchedules] = React.useState([0]);
-
     const addNewDateTime = (id: number) => {
+        const clear = scheduleData.length === 2 ? true : false;
+        const remove = scheduleData.length === 2 ? true : false;
+        const newProp = {
+            id: id + 1,
+            date: new Date(),
+            time: "",
+            showPlaceHolder: true,
+            isOpen: false,
+            disabled: clear,
+            rendered: true,
+            showRemove: remove
+        }
+
         const data = scheduleData.map(item => {
             if (item.id === id) {
-                return {...item, disabled: !item.disabled}
+                return {...item, disabled: !item.disabled, showRemove: !item.showRemove}
             }
             return item
         });
-        setSchedules((state) => [...state, allSchedules.length]);
-        const newData = data.map(item => {
-            if (item.id === (id + 1)) {
-                return {...item, rendered: true}
-            }
-            return item;
+        setScheduleData(data);
+        setScheduleData((state) => [...state, newProp]);
+    }
+
+    const removeDateTime = (id: number) => {
+        const updateProps = scheduleData.filter((item) => {
+            return item.id !== id
         });
-        setScheduleData(newData);
+        const lastProp = updateProps[updateProps.length - 1];
+        const data = updateProps.map(data => {
+            if (data.id === lastProp.id && updateProps.length > 1) {
+                return {...data, disabled: !data.disabled};
+            }
+            return data;
+        })
+        setScheduleData(data);
     }
 
     const updateScheduleData = (e: React.ChangeEvent<HTMLSelectElement> | React.SetStateAction<Date> | any, id: number, action: string) => {
@@ -108,20 +111,20 @@ const Content = () => {
     }
 
     
-    const schedules = allSchedules.map(schedule => {
+    const schedules = scheduleData.map(data => {
         return (
-            <div key={schedule}><div className={styles['date-time-container']}>
+            <div key={data.id}><div className={styles['date-time-container']}>
                 <div>
-                    <div onClick={(e) => handleClick(e, schedule)} className={styles["datepicker"]}>
+                    <div onClick={(e) => handleClick(e, data.id)} className={styles["datepicker"]}>
                         <img src={calendarIcon} alt="calendar icon"></img>
-                        <>{scheduleData[schedule].showPlaceHolder ? (<small>Pick a date</small>) : (<small>{format(scheduleData[schedule].date.toLocaleDateString(), "d MMMM, yyyy")}</small>)}</>
+                        <>{data.showPlaceHolder ? (<small>Pick a date</small>) : (<small>{format(data.date.toLocaleDateString(), "d MMMM, yyyy")}</small>)}</>
                         <img src={arrowDown} alt="arrow down icon"></img>
                     </div>
                 </div>
                         
                 <div className={styles['timepicker']}>
                     <img src={clockIcon} alt="clock icon"></img>
-                    <select name="time" value={scheduleData[schedule].time} onChange={(e) => updateScheduleData(e, schedule, 'time')}>
+                    <select name="time" value={data.time} onChange={(e) => updateScheduleData(e, data.id, 'time')}>
                         <option value="" disabled selected>Pick a time</option>
                         <option value="9 - 10 AM">9 - 10 am</option>
                         <option value="10 - 11 AM">10 - 11 am</option>
@@ -132,12 +135,14 @@ const Content = () => {
                     </select>
                 </div>
 
-                <button className={styles['remove-button']}><i>Remove</i></button>
-                <button className={styles['add-button']} onClick={() => addNewDateTime(schedule)} disabled={scheduleData[schedule].disabled}>Add new</button>
+                {data.showRemove && (
+                    <button className={styles['remove-button']} onClick={() => removeDateTime(data.id)}><i>Remove</i></button>
+                )}
+                <button className={styles['add-button']} onClick={() => addNewDateTime(data.id)} disabled={data.disabled}>Add new</button>
                         
             </div>
-            {scheduleData[schedule].isOpen && (
-                    <DatePicker selected={scheduleData[schedule].date} onChange={(e:Date) => updateScheduleData(e, schedule, 'date')} dateFormat="d MMMM, yyyy" inline />   
+            {data.isOpen && (
+                    <DatePicker selected={data.date} onChange={(e:Date) => updateScheduleData(e, data.id, 'date')} dateFormat="d MMMM, yyyy" inline />   
             )}</div>
         );
     });
