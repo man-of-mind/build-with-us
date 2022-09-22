@@ -1,15 +1,31 @@
 .services {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     background: #FDF6EA;
-    img {
-        width: 171px;
+    padding: 21px 30px 21px 70px;
+    figure {
+        margin: 0;
+        img {
+            width: 171px;
+            height: 91px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
     }
-    span {
-        font-weight: 700;
-        font-size: 20px;
-        line-height: 24px;
-        color: #AD710D;
+    .categories {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-top: 15px;
+        span {
+            font-weight: 700;
+            font-size: 18px;
+            line-height: 24px;
+            color: #AD710D;
+        }
+        img {
+            padding: 0 30px;
+        }
     }
 }
