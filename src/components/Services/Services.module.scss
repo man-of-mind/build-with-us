@@ -1,0 +1,15 @@
+.services {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #FDF6EA;
+    img {
+        width: 171px;
+    }
+    span {
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 24px;
+        color: #AD710D;
+    }
+}

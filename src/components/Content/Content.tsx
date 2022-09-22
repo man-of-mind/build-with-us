@@ -184,9 +184,6 @@ const Content = () => {
 
     return (
         <div className={styles["content"]}>
-            <p>Are you looking to build a global standard MVP of your product? 
-                You've come to the right place! Reach out to us today and let the journey begin!
-            </p>
             <span>Submit a request</span>
             <form onSubmit={(e) => e.preventDefault()}>
                 <label htmlFor="name">Name</label>

@@ -5,7 +5,8 @@ const Hero = () => {
     return (
         <div className={styles["hero"]}>
             <h1>Build With Us</h1>
-            <p>Drop your information and we would get back to you</p>
+            <p>Are you looking to build a global standard MVP of your product? 
+                You've come to the right place! Reach out to us today and let the journey begin!</p>
         </div>
     );
 }
