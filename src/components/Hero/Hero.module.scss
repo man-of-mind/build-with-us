@@ -1,8 +1,8 @@
 .hero {
-    background-image: url('../Images/header.svg');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), black), url('../Images/header.svg');
     height: 460px;
     width: auto;
     color: #FFFFFF;
