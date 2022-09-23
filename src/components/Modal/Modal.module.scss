@@ -145,3 +145,186 @@
         color: #FFFFFF;
     }
 }
+
+@media screen and (max-width: 678px) {
+    .modal {
+        width: 100vw;
+        overflow: hidden;
+        .header {
+            height: 50px;
+            font-size: 18px;
+            text-align: start;
+            line-height: 22px;
+            display: flex;
+            flex-direction: column;
+            padding-left: 20px;
+            margin-left: 0;
+        }
+        .booking-icon-status {
+            height: auto;
+            background: #F4F9FF;
+            img {
+                padding-left: 0px;
+                height: 70px;
+                width: 100px;
+            }
+            h1 {
+                margin: 0;
+                font-weight: 700;
+                font-size: 18px;
+                line-height: 22px;
+                padding: 0px 20px 20px 20px;
+            }
+        }
+        section {
+            padding: 25px 20px 30px 20px;
+            .detail {
+                font-size: 16px;
+                line-height: 18px;
+                padding-bottom: 10px;
+                .para {
+                    width: 75px;
+                }
+                .time-date {
+                    display: grid;
+                    grid-template-columns: auto auto;
+                    gap: 15px;
+                    span {
+                        font-size: 16px;
+                        line-height: 18px;
+                    }
+                }
+            }
+            .description {
+                padding: 12px 18px;
+                width: calc(100% + 25px);
+                h3 {
+                    font-size: 20px;
+                    line-height: 24px;
+                }
+                p {
+                    font-size: 14px;
+                    line-height: 24px
+                }
+            }
+        }
+        .booking-confirmed {
+            img {
+                height: 150px;
+                width: 150px;
+            }
+        }
+        .confirm-booking {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: inherit;
+            padding-top: 25px;
+            p {
+                width: calc(100% - 40px);
+                font-size: 16px;
+                line-height: 18px;
+            }
+        }
+        button {
+            margin: 15px 20px 39px 20px;
+            height: 50px;
+            width: calc(100% - 40px);
+            border-radius: 30px;
+            font-size: 18px;
+            line-height: 22px;
+            border: none;
+        }
+    }
+}
+
+@media screen and (min-width: 679px) and (max-width: 1100px) {
+    .modal {
+        width: 500px;
+        .header {
+            height: 70px;
+            font-size: 25px;
+            color: #FFFFFF;
+            line-height: 35px;
+            width: 100%;
+        }
+        .booking-icon-status {
+            height: auto;
+            background: #F4F9FF;
+            width: 100%;
+            img {
+                padding-left: 0px;
+                height: 90px;
+                width: 150px;
+            }
+            h1 {
+                margin: 0;
+                font-weight: 700;
+                font-size: 20px;
+                line-height: 24px;
+                padding-left: 20px;
+                padding-bottom: 20px;
+            }
+        }
+        section {
+            padding: 25px 20px 30px 20px;
+            .detail {
+                font-size: 18px;
+                line-height: 18px;
+                padding-bottom: 15px;
+                .para {
+                    width: 85px;
+                }
+                .time-date {
+                    display: grid;
+                    grid-template-columns: auto auto;
+                    gap: 20px;
+                    span {
+                        font-size: 18px;
+                        line-height: 18px;
+                    }
+                }
+            }
+            .description {
+                padding: 12px 18px;
+                width: calc(100% + 100px);
+                h3 {
+                    font-size: 20px;
+                    line-height: 24px;
+                }
+                p {
+                    font-size: 14px;
+                    line-height: 24px
+                }
+            }
+        }
+        .booking-confirmed {
+            img {
+                height: 150px;
+                width: 150px;
+            }
+        }
+        .confirm-booking {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            padding-top: 25px;
+            p {
+                width: 400px;
+                font-size: 16px;
+                line-height: 18px;
+                padding: 0 20px;
+            }
+        }
+        button {
+            margin: 15px 20px 39px 20px;
+            height: 50px;
+            width: calc(100% - 40px);
+            border-radius: 30px;
+            font-size: 18px;
+            line-height: 22px;
+            border: none;
+        }
+    }
+}

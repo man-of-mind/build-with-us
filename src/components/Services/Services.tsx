@@ -10,11 +10,11 @@ const Services = () => {
                 <img src={iQubeLogo} alt="iQube logo" />
             </figure>
             <div className={styles['categories']}>
-                <span>SOFTWARE DEVELOPMENT</span>
+                <span><img src={ellipse} alt="dot sign"/>SOFTWARE DEVELOPMENT</span>
                 <img src={ellipse} alt="dot sign"/>
-                <span>DATA SCIENCE CONSULTANCY</span>
+                <span><img src={ellipse} alt="dot sign"/>DATA SCIENCE CONSULTANCY</span>
                 <img src={ellipse} alt="dot sign"/>
-                <span>IVAS &#40;INTELLIGENT VALUE ADDED SERVICES&#41;</span>
+                <span><img src={ellipse} alt="dot sign"/>IVAS &#40;INTELLIGENT VALUE ADDED SERVICES&#41;</span>
             </div>
             
         </div>

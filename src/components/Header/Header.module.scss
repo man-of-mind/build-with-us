@@ -21,3 +21,9 @@ nav {
         color: rgba(0, 0, 0, 0.6);
     }
 }
+
+@media screen and (max-width: 1100px) {
+    nav {
+        display: none;
+    }
+}

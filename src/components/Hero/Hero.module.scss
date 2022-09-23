@@ -28,3 +28,35 @@
         max-width: 987px;
     }
 }
+
+@media screen and (max-width: 678px) {
+    .hero {
+        padding: 23px 0px 46px 27px;
+        height: 155px;
+        h1 {
+            font-size: 30px;
+            line-height: 36px;
+        }
+        p {
+            font-size: 16px;
+            line-height: 19px;
+            max-width: 274px;
+        }
+    }
+}
+
+@media screen and (min-width: 679px) and (max-width: 1100px) {
+    .hero {
+        padding: 60px 0px 46px 50px;
+        height: 155px;
+        h1 {
+            font-size: 50px;
+            line-height: 70px;
+        }
+        p {
+            font-size: 20px;
+            line-height: 24px;
+            max-width: 550px;
+        }
+    }
+}
