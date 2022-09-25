@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/build-with-us/static/css/main.77defa87.css",
-    "main.js": "/build-with-us/static/js/main.a127c409.js",
+    "main.css": "/build-with-us/static/css/main.121f571e.css",
+    "main.js": "/build-with-us/static/js/main.84293240.js",
     "static/media/header.svg": "/build-with-us/static/media/header.175c7f7b4d639bc97801.svg",
     "static/media/iqube.svg": "/build-with-us/static/media/iqube.d41c4ec174671d75d084ac4c54229a3b.svg",
     "static/media/ProductSansBold.ttf": "/build-with-us/static/media/ProductSansBold.53df38d5491afbeb42a5.ttf",
@@ -12,11 +12,11 @@
     "static/media/calendar.svg": "/build-with-us/static/media/calendar.4b144b8f70812f7f09a90d57af289c8f.svg",
     "static/media/arrow.svg": "/build-with-us/static/media/arrow.afccb35260fe4db60ff4911db0551b1b.svg",
     "static/media/ellipse.svg": "/build-with-us/static/media/ellipse.57b7a21b44b7de486004bef06b5c6c84.svg",
-    "main.77defa87.css.map": "/build-with-us/static/css/main.77defa87.css.map",
-    "main.a127c409.js.map": "/build-with-us/static/js/main.a127c409.js.map"
+    "main.121f571e.css.map": "/build-with-us/static/css/main.121f571e.css.map",
+    "main.84293240.js.map": "/build-with-us/static/js/main.84293240.js.map"
   },
   "entrypoints": [
-    "static/css/main.77defa87.css",
-    "static/js/main.a127c409.js"
+    "static/css/main.121f571e.css",
+    "static/js/main.84293240.js"
   ]
 }
