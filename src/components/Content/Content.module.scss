@@ -251,6 +251,9 @@
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
+                    label {
+                        font-size: 10px;
+                    }
                     i {
                         font-size: 12px;
                         line-height: 14px;
