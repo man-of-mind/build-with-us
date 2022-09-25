@@ -4,6 +4,7 @@ import openedMessage from '../Images/opened-env.svg';
 import iQubeLogo from '../Images/iqube.svg';
 import { format } from 'react-string-format';
 import axios from 'axios';
+import emailjs from '@emailjs/browser';
 
 
 interface value {
@@ -21,14 +22,27 @@ interface prop {
     schedule: schedule[]
 }
 const ModalContent:React.FC<prop> = ({ value, schedule }) => {
-    let userData: { time: string; date: Date; }[] = [];
+    let userData: { time: string; date: string; }[] = [];
     schedule.map(item => {
         userData.push({
-            time: item.time,
-            date: item.date
+            date: item.date.toDateString(),
+            time: item.time
         });
         return item
     });
+
+    const formData = {
+        name: value.name,
+        email: value.email,
+        subject: value.subject,
+        medium: "online",
+        scheduledDateAndTime: userData,
+        description: value.description
+    }
+
+    const template_schedule = userData.map(timeDate => {
+        return Object.values(timeDate).join(" at ");
+    }).join(" or ");
     
     const [buttonStyle, setButtonStyle] = React.useState({});
     const [text, setText] = React.useState("Confirm meeting");
@@ -41,19 +55,17 @@ const ModalContent:React.FC<prop> = ({ value, schedule }) => {
             cursor: "not-allowed",
         };
         setButtonStyle(style);
-        setText("loading...")
-        axios.post("https://bwuiqube.herokuapp.com/api/v1/users", {
-            "name": value.name,
-            "email": value.email,
-            "subject": value.subject,
-            "medium": "online",
-            "scheduledDateAndTime": userData,
-            "description": value.description
-        }).then((res) => {
-            console.log(res.status);
+        setText("loading...");
+        axios.post("https://bwuiqube.herokuapp.com/api/v1/users", formData).then((res) => {
             if (res.status === 201) {
                 setShow(!show);
             }
+            emailjs.send('service_f3jbqhl','template_vl3asn6', {...formData, scheduleDateAndTime: template_schedule}, 'kskHrrj2hiTMCfMxY')
+	        .then((response) => {
+	            console.log('SUCCESS!', response.status, response.text);
+	        }, (err) => {
+	            console.log('FAILED...', err);
+	        });
         }).catch((err) => {
             setButtonStyle({});
             setText("Confirm meeting")
