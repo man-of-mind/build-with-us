@@ -16,15 +16,15 @@
     border-radius: 8px;
     font-family: 'ProductSans';
     .header {
-        height: 103px;
+        height: 50px;
         background: #113333;
         display: grid;
         place-content: center;
         border-radius: 8px 8px 0px 0px;
         font-weight: 400;
-        font-size: 30px;
+        font-size: 24px;
         color: #FFFFFF;
-        line-height: 41px;
+        line-height: 35px;
         width: 100%;
     }
     .booking-confirmed {
@@ -35,8 +35,8 @@
         align-items: center;
         justify-content: center;
         img {
-            height: 200px;
             width: 200px;
+            height: 200px;
         }
     }
     .booking-icon-status {
@@ -45,8 +45,8 @@
         width: 100%;
         img {
             padding-left: 37px;
-            height: 110px;
-            width: 150px;
+            height: 90px;
+            width: 130px;
         }
         h1 {
             margin: 0;
@@ -58,14 +58,14 @@
         }
     }
     section {
-        padding: 25px 55px 30px 55px;
+        padding: 20px 55px 20px 55px;
         align-self: flex-start;
         .detail {
             display: flex;
             font-weight: 400;
-            font-size: 20px;
+            font-size: 18px;
             line-height: 22px;
-            padding-bottom: 15px;
+            padding-bottom: 10px;
             .para {
                 width: 85px;
                 color: rgba(0, 0, 0, 0.6);
@@ -73,11 +73,11 @@
             .time-date {
                 display: grid;
                 grid-template-columns: auto auto;
-                gap: 20px;
+                gap: 5px;
                 span {
                     font-weight: 400;
-                    font-size: 20px;
-                    line-height: 22px;
+                    font-size: 17px;
+                    line-height: 20px;
                 }
                 b {
                     color: rgba(0, 0, 0, 0.6);
@@ -89,23 +89,23 @@
             }
         }
         .description {
-            padding: 14px 20px;
+            padding: 10px 20px;
             background: rgba(17, 51, 51, 0.1);
             border-radius: 8px;
             width: 723px;
-            margin-top: 20px;
+            margin-top: 15px;
             h3 {
                 font-weight: 700;
-                font-size: 24px;
-                line-height: 29px;
+                font-size: 22px;
+                line-height: 25px;
                 opacity: 0.5;
                 margin: 0;
             }
             p {
                 text-align: justify;
                 font-weight: 400;
-                font-size: 16px;
-                line-height: 29px
+                font-size: 15px;
+                line-height: 22px
             }
         }
     }
@@ -114,7 +114,8 @@
         flex-direction: column;
         align-items: center;
         width: 100%;
-        padding-top: 25px;
+        padding-top: 35px;
+        padding-bottom: 20px;
         p {
             width: 508px;
             font-weight: 700;
@@ -126,9 +127,9 @@
         }
     }
     button {
-        margin-top: 20px;
-        margin-bottom: 49px;
-        height: 68px;
+        margin-top: 10px;
+        margin-bottom: 19px;
+        height: 45px;
         width: 475px;
         background: #E66B3C;
         border-radius: 48px;
@@ -136,8 +137,8 @@
         transition: 0.4s ease-in;
         cursor: pointer;
         font-weight: 700;
-        font-size: 20px;
-        line-height: 25px;
+        font-size: 18px;
+        line-height: 22px;
         border: none;
     }
     a {

@@ -102,7 +102,7 @@ const ModalContent:React.FC<prop> = ({ value, schedule }) => {
             <>
                 <div className={styles['booking-icon-status']}>
                     <img src={iQubeLogo} alt="iQube logo" />
-                    <h1>Meeting summary with Iqubes lab</h1>
+                    <h1>Meeting summary with Iqubes Labs</h1>
                 </div>
                 <section>
                     <div className={styles['detail']}><span className={styles['para']}>Subject: </span><span>{value.subject}</span></div>
