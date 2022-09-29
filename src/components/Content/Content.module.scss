@@ -66,8 +66,8 @@
             mix-blend-mode: normal;
         }
         select {
-            border: 0.7px solid rgba(19, 32, 19, 0.3);
-            opacity: 0.5;
+            border: none;
+            opacity: 0.3;
         }
         .button {
             margin-top: 50px;
@@ -131,7 +131,7 @@
                 .timepicker {
                     margin-left: 28px;
                     background: #FBFBFB;
-                    border: 0.960366px solid #D8D8D8;
+                    border: 0.960366px solid #113333;
                     border-radius: 8px;
                     width: 251px;
                     display: flex;

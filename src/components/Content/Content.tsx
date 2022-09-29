@@ -112,17 +112,6 @@ const Content = () => {
         
     }
 
-    React.useEffect(() => {
-        if (scheduleData.length === 1) {
-            console.log("here")
-            const update = scheduleData[0];
-            const item = {...update, showRemove: false, disabled: false}
-            scheduleData[0] = item;
-            
-            setScheduleData(scheduleData)
-        }
-    }, [scheduleData])
-
     
     const schedules = scheduleData.map(data => {
         return (
