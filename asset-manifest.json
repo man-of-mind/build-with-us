@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/build-with-us/static/css/main.ea15ea22.css",
-    "main.js": "/build-with-us/static/js/main.90d11c38.js",
+    "main.js": "/build-with-us/static/js/main.8ed00683.js",
     "static/media/header.svg": "/build-with-us/static/media/header.175c7f7b4d639bc97801.svg",
     "static/media/iqube.svg": "/build-with-us/static/media/iqube.d41c4ec174671d75d084ac4c54229a3b.svg",
     "static/media/ProductSansBold.ttf": "/build-with-us/static/media/ProductSansBold.53df38d5491afbeb42a5.ttf",
@@ -13,10 +13,10 @@
     "static/media/arrow.svg": "/build-with-us/static/media/arrow.afccb35260fe4db60ff4911db0551b1b.svg",
     "static/media/ellipse.svg": "/build-with-us/static/media/ellipse.57b7a21b44b7de486004bef06b5c6c84.svg",
     "main.ea15ea22.css.map": "/build-with-us/static/css/main.ea15ea22.css.map",
-    "main.90d11c38.js.map": "/build-with-us/static/js/main.90d11c38.js.map"
+    "main.8ed00683.js.map": "/build-with-us/static/js/main.8ed00683.js.map"
   },
   "entrypoints": [
     "static/css/main.ea15ea22.css",
-    "static/js/main.90d11c38.js"
+    "static/js/main.8ed00683.js"
   ]
 }
